@@ -6,80 +6,80 @@ namespace ConsoleApp1
 	class Program
 	{
 		static void Main(string[] args)
-		{
-			double filledK = 0;
+		{ 
+			double fill = 0;
+			var poryadok = 10;
 			var toHash1 = "amogus";
 			var toHash2 = "abobus";
-			var boxes = new List<Dictionary<int,string>>();
-			int poryadok = new int();
-			SetBoxes();
-			AddElement(toHash1, "sth imposter");
-			AddElement(toHash2, "sth not imposter");
-			Console.WriteLine(GetValue(toHash2));
-			
+			List<boxes> boxes = new List<boxes>();
+			boxes = SetBoxes(boxes);
+			Addelement(toHash1,"idk wtf is it");
+			Addelement(toHash2,"sth wtf");
+			Console.WriteLine(getDescription(toHash1));
+			Console.WriteLine(getDescription(toHash2));
+			Console.WriteLine(getDescription(toHash2));
 
-			void SetBoxes()
+
+			string getDescription(string element)
+			{
+				var i = Math.Abs(ConvertToHash(element) % poryadok);
+				return boxes[i].GetValue(ConvertToHash(element));
+			}
+			void Addelement(string element, string value)
+			{
+				var i = Math.Abs(ConvertToHash(element) % poryadok);
+				if (!boxes[i].Contains())
+				{
+					fill += 1 / boxes.Count;
+				}
+				boxes[i].AddElement(ConvertToHash(element),value);
+				if (fill > 0.6)
+				{
+					boxes = SetBoxes(boxes);
+				}
+			}
+			
+			
+			List<boxes> SetBoxes(List<boxes> boxes)
 			{
 				if (boxes.Count == 0)
 				{
-					for (var i = 0; i < 10; i++)
+					for (var i = 0; i < poryadok; i++)
 					{
-						boxes.Add(new Dictionary<int,string>());
-					} 
-					poryadok = boxes.Count / 10;
-				}
-				else
-				{
-					
-					var pureBoxes = new List<Dictionary<int,string>>();
-					for (var i = 0; i < Math.Pow(10 ,poryadok); i++)
-					{
-						boxes.Add(new Dictionary<int,string>());
+						boxes.Add(new boxes());
 					}
 
-					foreach (var dict in boxes)
+					return boxes;
+				}
+
+				var pureBoxes = new List<boxes>();
+				fill = 0;
+				for (var i = 0; i < Math.Pow(poryadok, 2); i++)
+				{
+					pureBoxes.Add(new boxes());
+				}
+
+				poryadok = pureBoxes.Count;
+
+				foreach (var box in boxes)
+				{
+					foreach (var value in box._localDict)
 					{
-						foreach (var value in dict)
+						var i = Math.Abs(value.Key % poryadok);
+						if (pureBoxes[i].Contains())
 						{
-							var hesh = ConvertToHash(value.Value);
-							int hashNumber = GetHashNumbers(hesh);
-							boxes[hashNumber].Add(hesh,value.Value);
-							if (boxes[hashNumber].Count == 0)
-							{
-								filledK += (1 / boxes.Count);
-							}
+							fill += 1 / pureBoxes.Count;
 						}
+						pureBoxes[i].AddElement(value.Key, value.Value);
 					}
 				}
+
+				return pureBoxes;
 			}
+
 			int ConvertToHash(string toHash)
 			{
 				return toHash.GetHashCode();
-			}
-
-			void AddElement(string value, string description)
-			{
-				if (filledK < 0.6)
-				{
-					var hesh = ConvertToHash(value);
-					int hashNumber = GetHashNumbers(hesh);
-					boxes[hashNumber].Add(hesh,description);
-					if (boxes[hashNumber].Count == 0)
-					{
-						filledK += (1 / boxes.Count);
-					}
-				}
-			}
-			int GetHashNumbers(int hash)
-			{
-				var i = hash.ToString().Substring(hash.ToString().Length - poryadok);
-				return int.Parse(i);
-			}
-
-			string GetValue(string key)
-			{
-				var i = GetHashNumbers(ConvertToHash(key));
-				return boxes[i][ConvertToHash(key)];
 			}
 		}
 	}
