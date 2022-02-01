@@ -15,24 +15,21 @@ namespace ConsoleApp1
 			boxes = SetBoxes(boxes);
 			AddElement(toHash1,"idk wtf is it");
 			AddElement(toHash2,"sth wtf");
-			Console.WriteLine(GetDescription(toHash1));
-			Console.WriteLine(GetDescription(toHash2));
+			GetDescription(toHash1);
+			GetDescription(toHash2);
 			boxes = SetBoxes(boxes);
-			Console.WriteLine(GetDescription(toHash2));
+			GetDescription(toHash2);
 			
 
-			string GetDescription(string element)
+			void GetDescription(string element)
 			{
 				var i = Math.Abs(ConvertToHash(element) % power);
-				return boxes[i].GetValue(ConvertToHash(element));
+				Console.WriteLine(boxes[i].GetValue(ConvertToHash(element)));
 			}
 			void AddElement(string element, string value)
 			{
 				var i = Math.Abs(ConvertToHash(element) % power);
-				if (!boxes[i].Contains())
-				{
-					fill += 1 / boxes.Count;
-				}
+				fill += 1 / boxes.Count;
 				boxes[i].AddElement(ConvertToHash(element),value);
 				if (fill > 0.6)
 				{
@@ -64,15 +61,11 @@ namespace ConsoleApp1
 
 				foreach (var box in boxes)
 				{
-					foreach (var value in box.AlternativeIntList)
+					foreach ((int value, string key) in box.TupleList)
 					{
 						var i = Math.Abs(value % power);
-						var index = box.AlternativeIntList.IndexOf(value);
-						if (pureBoxes[i].Contains())
-						{
-							fill += 1 / pureBoxes.Count;
-						}
-						pureBoxes[i].AddElement(box.AlternativeIntList[index], box.AlternativeStringList[index]);
+						fill += 1 / pureBoxes.Count;
+						pureBoxes[i].AddElement(value, key);
 					}
 				}
 
