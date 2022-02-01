@@ -8,13 +8,13 @@ namespace ConsoleApp1
 		static void Main(string[] args)
 		{ 
 			double fill = 0;
-			var poryadok = 10;
+			var power = 10;
 			const string toHash1 = "amogus";
 			const string toHash2 = "abobus";
-			List<boxes> boxes = new List<boxes>();
+			List<Boxes> boxes = new List<Boxes>();
 			boxes = SetBoxes(boxes);
-			Addelement(toHash1,"idk wtf is it");
-			Addelement(toHash2,"sth wtf");
+			AddElement(toHash1,"idk wtf is it");
+			AddElement(toHash2,"sth wtf");
 			Console.WriteLine(GetDescription(toHash1));
 			Console.WriteLine(GetDescription(toHash2));
 			boxes = SetBoxes(boxes);
@@ -23,12 +23,12 @@ namespace ConsoleApp1
 
 			string GetDescription(string element)
 			{
-				var i = Math.Abs(ConvertToHash(element) % poryadok);
+				var i = Math.Abs(ConvertToHash(element) % power);
 				return boxes[i].GetValue(ConvertToHash(element));
 			}
-			void Addelement(string element, string value)
+			void AddElement(string element, string value)
 			{
-				var i = Math.Abs(ConvertToHash(element) % poryadok);
+				var i = Math.Abs(ConvertToHash(element) % power);
 				if (!boxes[i].Contains())
 				{
 					fill += 1 / boxes.Count;
@@ -41,37 +41,38 @@ namespace ConsoleApp1
 			}
 			
 			
-			List<boxes> SetBoxes(List<boxes> boxes)
+			List<Boxes> SetBoxes(List<Boxes> boxes)
 			{
 				if (boxes.Count == 0)
 				{
-					for (var i = 0; i < poryadok; i++)
+					for (var i = 0; i < power; i++)
 					{
-						boxes.Add(new boxes());
+						boxes.Add(new Boxes());
 					}
 
 					return boxes;
 				}
 
-				var pureBoxes = new List<boxes>();
+				var pureBoxes = new List<Boxes>();
 				fill = 0;
-				for (var i = 0; i < Math.Pow(poryadok, 2); i++)
+				for (var i = 0; i < Math.Pow(power, 2); i++)
 				{
-					pureBoxes.Add(new boxes());
+					pureBoxes.Add(new Boxes());
 				}
 
-				poryadok = pureBoxes.Count;
+				power = pureBoxes.Count;
 
 				foreach (var box in boxes)
 				{
-					foreach (var value in box._localDict)
+					foreach (var value in box.AlternativeIntList)
 					{
-						var i = Math.Abs(value.Key % poryadok);
+						var i = Math.Abs(value % power);
+						var index = box.AlternativeIntList.IndexOf(value);
 						if (pureBoxes[i].Contains())
 						{
 							fill += 1 / pureBoxes.Count;
 						}
-						pureBoxes[i].AddElement(value.Key, value.Value);
+						pureBoxes[i].AddElement(box.AlternativeIntList[index], box.AlternativeStringList[index]);
 					}
 				}
 
