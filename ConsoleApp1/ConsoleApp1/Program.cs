@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ConsoleApp1
+﻿namespace ConsoleApp1
 {
-	class Program
+	internal class Program
 	{
-		static void Main(string[] args)
+		private static void Main(string[] args)
 		{
 			const string toHash1 = "amogus";
 			const string toHash2 = "abobus";
