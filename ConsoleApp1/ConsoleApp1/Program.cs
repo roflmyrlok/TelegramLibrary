@@ -9,18 +9,19 @@ namespace ConsoleApp1
 		{ 
 			double fill = 0;
 			var poryadok = 10;
-			var toHash1 = "amogus";
-			var toHash2 = "abobus";
+			const string toHash1 = "amogus";
+			const string toHash2 = "abobus";
 			List<boxes> boxes = new List<boxes>();
 			boxes = SetBoxes(boxes);
 			Addelement(toHash1,"idk wtf is it");
 			Addelement(toHash2,"sth wtf");
-			Console.WriteLine(getDescription(toHash1));
-			Console.WriteLine(getDescription(toHash2));
-			Console.WriteLine(getDescription(toHash2));
+			Console.WriteLine(GetDescription(toHash1));
+			Console.WriteLine(GetDescription(toHash2));
+			boxes = SetBoxes(boxes);
+			Console.WriteLine(GetDescription(toHash2));
+			
 
-
-			string getDescription(string element)
+			string GetDescription(string element)
 			{
 				var i = Math.Abs(ConvertToHash(element) % poryadok);
 				return boxes[i].GetValue(ConvertToHash(element));
