@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace ConsoleApp1
 {
 	public class ListOfBoxes
 	{
-		private double _fill;
+		private double _fill = 0;
 		private int _power = 10;
 
 		private List<Boxes> _boxes = new();
@@ -14,8 +16,7 @@ namespace ConsoleApp1
 		{
 			SetBoxes();
 		}
-
-
+		
 		public void GetDescription(string element)
 		{
 			var i = Math.Abs(ConvertToHash(element) % _power);
@@ -25,9 +26,13 @@ namespace ConsoleApp1
 		public void AddElement(string element, string value)
 		{
 			var i = Math.Abs(ConvertToHash(element) % _power);
-			_fill += 1 / _boxes.Count;
+			if (!_boxes[i].visited)
+				_fill += 1 / _power;
 			_boxes[i].AddElement(ConvertToHash(element), value);
-			if (_fill > 0.6) _boxes = SetBoxes();
+			if (_fill > 0.6)
+			{
+				_boxes = SetBoxes();
+			}
 		}
 
 
@@ -50,7 +55,7 @@ namespace ConsoleApp1
 			foreach ((var value, var key) in box.TupleList)
 			{
 				var i = Math.Abs(value % _power);
-				_fill += 1 / pureBoxes.Count;
+				_fill += (1 / _power);
 				pureBoxes[i].AddElement(value, key);
 			}
 
