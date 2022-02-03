@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 
@@ -7,10 +8,9 @@ namespace ConsoleApp1
 {
 	internal class Program
 	{
+		[SuppressMessage("ReSharper.DPA", "DPA0003: Excessive memory allocations in LOH", MessageId = "type: ConsoleApp1.Boxes[]; size: 2017MB")]
 		private static void Main(string[] args)
 		{
-			const string toHash1 = "amogus";
-			const string toHash2 = "abobus";
 			var boxes1 = new ListOfBoxes();
 			List<string> txtfile = txtReadar();
 			foreach (var element in txtfile)
