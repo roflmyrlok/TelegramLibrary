@@ -20,7 +20,7 @@ namespace ConsoleApp1
 			foreach (var (key, value) in TupleList)
 				if (hash.Equals(key))
 					return value;
-			return "shhes";
+			return "no such an item in dictionary";
 		}
 	}
 }
