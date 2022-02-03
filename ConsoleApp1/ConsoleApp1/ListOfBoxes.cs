@@ -8,12 +8,13 @@ namespace ConsoleApp1
 	public class ListOfBoxes
 	{
 		private double _fill = 0;
-		private int _power = 1000000;
+		private int _power = 10;
 
 		private List<Boxes> _boxes = new();
 
-		public ListOfBoxes()
+		public ListOfBoxes(int power)
 		{
+			_power = power;
 			SetBoxes();
 		}
 		

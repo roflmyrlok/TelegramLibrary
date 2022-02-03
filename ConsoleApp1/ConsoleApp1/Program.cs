@@ -11,8 +11,15 @@ namespace ConsoleApp1
 		[SuppressMessage("ReSharper.DPA", "DPA0003: Excessive memory allocations in LOH", MessageId = "type: ConsoleApp1.Boxes[]; size: 2017MB")]
 		private static void Main(string[] args)
 		{
-			var boxes1 = new ListOfBoxes();
 			List<string> txtfile = txtReadar();
+			var lenTxt = 0;
+			foreach (var element in txtfile)
+			{
+				lenTxt++;
+			}
+
+			var gg = Math.Pow(10, lenTxt.ToString().Length);
+			var boxes1 = new ListOfBoxes(Convert.ToInt32(gg*10));
 			foreach (var element in txtfile)
 			{
 				var i = 0;
