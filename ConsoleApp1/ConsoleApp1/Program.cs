@@ -8,19 +8,17 @@ namespace ConsoleApp1
 {
 	internal class Program
 	{
-		[SuppressMessage("ReSharper.DPA", "DPA0003: Excessive memory allocations in LOH", MessageId = "type: ConsoleApp1.Boxes[]; size: 2017MB")]
 		private static void Main(string[] args)
 		{
-			List<string> txtfile = txtReadar();
+			List<string> datafile = TxtRdr();
 			var lenTxt = 0;
-			foreach (var element in txtfile)
+			foreach (var element in datafile)
 			{
 				lenTxt++;
 			}
-
-			var gg = Math.Pow(10, lenTxt.ToString().Length);
-			var boxes1 = new ListOfBoxes(Convert.ToInt32(gg*10));
-			foreach (var element in txtfile)
+			var maxNumberOfBoxes = Math.Pow(10, lenTxt.ToString().Length) * 1.7;
+			var boxes1 = new ListOfBoxes(Convert.ToInt32(maxNumberOfBoxes));
+			foreach (var element in datafile)
 			{
 				var i = 0;
 				var name = "";
@@ -30,8 +28,8 @@ namespace ConsoleApp1
 					i++;
 				}
 
-				var defenition = element.Substring(i + 1);
-				boxes1.AddElement(name,defenition);
+				var definition = element.Substring(i + 1);
+				boxes1.AddElement(name,definition);
 			}
 
 			while (true)
@@ -39,7 +37,7 @@ namespace ConsoleApp1
 				var n = Console.ReadLine();
 				boxes1.GetDescription(n);
 			}
-			List<string> txtReadar()
+			List<string> TxtRdr()
 			{
 				string[] lines;
 				var list = new List<string>();

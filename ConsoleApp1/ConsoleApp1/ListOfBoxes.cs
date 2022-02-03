@@ -27,7 +27,7 @@ namespace ConsoleApp1
 		public void AddElement(string element, string value)
 		{
 			var i = Math.Abs(ConvertToHash(element) % _power);
-			if (!_boxes[i].visited)
+			if (!_boxes[i].Visited)
 				_fill += 1 / Convert.ToDouble(_power);
 			_boxes[i].AddElement(ConvertToHash(element), value);
 			if (_fill > 0.6)
