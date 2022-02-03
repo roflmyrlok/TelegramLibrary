@@ -26,7 +26,12 @@ namespace ConsoleApp1
 				var defenition = element.Substring(i + 1);
 				boxes1.AddElement(name,defenition);
 			}
-			boxes1.GetDescription("A");
+
+			while (true)
+			{
+				var n = Console.ReadLine();
+				boxes1.GetDescription(n);
+			}
 			List<string> txtReadar()
 			{
 				string[] lines;
