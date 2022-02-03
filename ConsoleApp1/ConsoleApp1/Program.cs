@@ -16,7 +16,7 @@ namespace ConsoleApp1
 			{
 				lenTxt++;
 			}
-			var maxNumberOfBoxes = Math.Pow(10, lenTxt.ToString().Length) * 1.7;
+			var maxNumberOfBoxes = Math.Pow(10, lenTxt.ToString().Length) * 10;
 			var boxes1 = new ListOfBoxes(Convert.ToInt32(maxNumberOfBoxes));
 			foreach (var element in datafile)
 			{

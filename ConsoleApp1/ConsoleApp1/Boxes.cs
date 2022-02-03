@@ -8,7 +8,6 @@ namespace ConsoleApp1
 	{
 		public List<Tuple<int, string>> TupleList = new();
 		public bool Visited { get; set; } = false;
-
 		public void AddElement(int hash, string description)
 		{
 			TupleList.Add(new Tuple<int, string>(hash, description));

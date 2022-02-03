@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace ConsoleApp1
@@ -63,9 +64,27 @@ namespace ConsoleApp1
 			return pureBoxes;
 		}
 
-		private int ConvertToHash(string toHash)
+		private int ConvertToHash1(string toHash)
 		{
 			return toHash.GetHashCode();
+		}
+
+		public int ConvertToHash(string read)
+		{
+			double hashedValue = 0;
+				int i = 0;
+				while (i < read.Length)
+				{
+					hashedValue += read.ElementAt(i) * Math.Pow(2, i);
+					i++;
+				}
+
+				while (hashedValue.ToString().Length > 9)
+				{
+					hashedValue = hashedValue - 12351235;
+				}
+				return Convert.ToInt32(hashedValue);
+
 		}
 	}
 }
