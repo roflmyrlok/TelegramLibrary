@@ -1,90 +1,78 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace ConsoleApp1
 {
-	public class ListOfBoxes
+	public class StringsDictionary
 	{
-		private double _fill = 0;
-		private int _power = 10;
+		private List<Bucket> _buckets = new();
+		private double _fill;
 
-		private List<Boxes> _boxes = new();
+		private int _power;
 
-		public ListOfBoxes(int power)
+		public void StringsDictionaryStart(int power)
 		{
 			_power = power;
-			SetBoxes();
-		}
-		
-		public void GetDescription(string element)
-		{
-			var i = Math.Abs(ConvertToHash(element) % _power);
-			Console.WriteLine(_boxes[i].GetValue(ConvertToHash(element)));
+			_buckets = SetBuckets();
 		}
 
-		public void AddElement(string element, string value)
+		public void Add(string element, string value)
 		{
-			var i = Math.Abs(ConvertToHash(element) % _power);
-			if (!_boxes[i].Visited)
+			var i = Convert.ToInt32(Math.Abs(ConvertToHash(element) % _power));
+			if (!_buckets[i].Visited)
 				_fill += 1 / Convert.ToDouble(_power);
-			_boxes[i].AddElement(ConvertToHash(element), value);
+			_buckets[i].Add(new KeyValuePair(ConvertToHash(element), value));
 			if (_fill > 0.6)
 			{
-				_boxes = SetBoxes();
+				_power = _power * 10;
+				_buckets = SetBuckets();
 			}
 		}
 
-
-		private List<Boxes> SetBoxes()
+		public void Remove(string key)
 		{
-			if (_boxes.Count == 0)
-			{
-				for (var i = 0; i < _power; i++) _boxes.Add(new Boxes());
+		}
 
-				return _boxes;
-			}
+		public void Get(string element)
+		{
+			var i = Convert.ToInt32(Math.Abs(ConvertToHash(element) % _power));
+			var result = _buckets[i].GetItemWithKey(ConvertToHash(element)).Value;
+			if (result != null) Console.WriteLine(result);
+		}
 
-			var pureBoxes = new List<Boxes>();
+		private List<Bucket> SetBuckets()
+		{
+			var pureBuckets = new List<Bucket>();
+			for (var i = 0; i < _power; i++) pureBuckets.Add(new Bucket());
+
 			_fill = 0;
-			for (var i = 0; i < Math.Pow(_power, 2); i++) pureBoxes.Add(new Boxes());
+			foreach (var bucket in _buckets)
+				if (bucket.Visited)
+				{
+					var i = Convert.ToInt32(Math.Abs(bucket.First.Pair.Key % _power));
+					pureBuckets[i] = bucket;
+				}
 
-			_power = pureBoxes.Count;
-
-			foreach (var box in _boxes)
-			foreach ((var value, var key) in box.TupleList)
-			{
-				var i = Math.Abs(value % _power);
-				_fill += (1 / Convert.ToDouble(_power));
-				pureBoxes[i].AddElement(value, key);
-			}
-
-			return pureBoxes;
+			return pureBuckets;
 		}
 
-		private int ConvertToHash1(string toHash)
+		private long ConvertToHash1(string key)
 		{
-			return toHash.GetHashCode();
+			return key.GetHashCode();
 		}
 
-		public int ConvertToHash(string read)
+		private long ConvertToHash(string read)
 		{
 			double hashedValue = 0;
-				int i = 0;
-				while (i < read.Length)
-				{
-					hashedValue += read.ElementAt(i) * Math.Pow(2, i);
-					i++;
-				}
+			var i = 0;
+			while (i < read.Length)
+			{
+				hashedValue += read.ElementAt(i) * Math.Pow(3, i);
+				i++;
+			}
 
-				while (hashedValue.ToString().Length > 9)
-				{
-					hashedValue = hashedValue - 12351235;
-				}
-				return Convert.ToInt32(hashedValue);
-
+			return Convert.ToInt64(hashedValue);
 		}
 	}
 }

@@ -1,25 +1,41 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-
 namespace ConsoleApp1
 {
-	public class Boxes
+	public class Bucket
 	{
-		public List<Tuple<int, string>> TupleList = new();
-		public bool Visited { get; set; } = false;
-		public void AddElement(int hash, string description)
+		public LinkedListNode First;
+		public bool Visited;
+
+		public void Add(KeyValuePair pair)
 		{
-			TupleList.Add(new Tuple<int, string>(hash, description));
-			Visited = true;
+			if (!Visited)
+			{
+				First = new LinkedListNode(pair);
+				Visited = true;
+			}
+			else
+			{
+				First.Next = new LinkedListNode(pair);
+			}
 		}
 
-		public string GetValue(int hash)
+		public void RemoveByKey(long key)
 		{
-			foreach (var (key, value) in TupleList)
-				if (hash.Equals(key))
-					return value;
-			return "no such an item in dictionary";
+			// remove pair with provided key
+		}
+
+		public KeyValuePair GetItemWithKey(long key)
+		{
+			var current = First;
+			while (true)
+			{
+				if (current == null) return new KeyValuePair(-1, "no such an item in dict");
+				if (current.Pair.Key != key)
+					current = current.Next;
+				else
+					break;
+			}
+
+			return current.Pair;
 		}
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 
@@ -10,14 +9,12 @@ namespace ConsoleApp1
 	{
 		private static void Main(string[] args)
 		{
-			List<string> datafile = TxtRdr();
+			var datafile = TxtRdr();
 			var lenTxt = 0;
-			foreach (var element in datafile)
-			{
-				lenTxt++;
-			}
-			var maxNumberOfBoxes = Math.Pow(10, lenTxt.ToString().Length) * 10;
-			var boxes1 = new ListOfBoxes(Convert.ToInt32(maxNumberOfBoxes));
+			foreach (var element in datafile) lenTxt++;
+			var maxNumberOfBoxes = Convert.ToInt32(Math.Pow(10, lenTxt.ToString().Length) * 1.7);
+			var buckets = new StringsDictionary();
+			buckets.StringsDictionaryStart(maxNumberOfBoxes);
 			foreach (var element in datafile)
 			{
 				var i = 0;
@@ -29,30 +26,26 @@ namespace ConsoleApp1
 				}
 
 				var definition = element.Substring(i + 1);
-				boxes1.AddElement(name,definition);
+				buckets.Add(name, definition);
 			}
 
 			while (true)
 			{
 				var n = Console.ReadLine();
-				boxes1.GetDescription(n);
+				buckets.Get(n);
 			}
+
 			List<string> TxtRdr()
 			{
-				string[] lines;
 				var list = new List<string>();
-				var fileStream = new FileStream(@"/Users/atrybushnyi/Documents/GitHub/t3_lab3/ConsoleApp1/ConsoleApp1/dictionary.txt",
+				var fileStream = new FileStream(
+					@"/Users/atrybushnyi/Documents/GitHub/t3_lab3/ConsoleApp1/ConsoleApp1/dictionary.txt",
 					FileMode.Open, FileAccess.Read);
 				using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
 				{
 					string line;
-					while ((line = streamReader.ReadLine()) != null)
-					{
-						list.Add(line);
-					}
+					while ((line = streamReader.ReadLine()) != null) list.Add(line);
 				}
-
-				lines = list.ToArray();
 				return list;
 			}
 		}
