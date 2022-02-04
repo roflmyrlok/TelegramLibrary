@@ -22,7 +22,7 @@ namespace ConsoleApp1
 			var i = Convert.ToInt32(Math.Abs(ConvertToHash(element) % _power));
 			if (!_buckets[i].Visited)
 				_fill += 1 / Convert.ToDouble(_power);
-			_buckets[i].Add(new KeyValuePair(ConvertToHash(element), value));
+			_buckets[i].Add(new KeyValuePair(element, value));
 			if (_fill > 0.6)
 			{
 				_power = _power * 10;
@@ -30,14 +30,16 @@ namespace ConsoleApp1
 			}
 		}
 
-		public void Remove(string key)
+		public void Remove(string element)
 		{
+			var i = Convert.ToInt32(Math.Abs(ConvertToHash(element) % _power));
+			_buckets[i].RemoveByKey(element);
 		}
 
 		public void Get(string element)
 		{
 			var i = Convert.ToInt32(Math.Abs(ConvertToHash(element) % _power));
-			var result = _buckets[i].GetItemWithKey(ConvertToHash(element)).Value;
+			var result = _buckets[i].GetItemWithKey(element).Value;
 			if (result != null) Console.WriteLine(result);
 		}
 
@@ -50,25 +52,25 @@ namespace ConsoleApp1
 			foreach (var bucket in _buckets)
 				if (bucket.Visited)
 				{
-					var i = Convert.ToInt32(Math.Abs(bucket.First.Pair.Key % _power));
+					var i = Convert.ToInt32(Math.Abs(ConvertToHash(bucket.First.Pair.Key) % _power));
 					pureBuckets[i] = bucket;
 				}
 
 			return pureBuckets;
 		}
 
-		private long ConvertToHash1(string key)
+		private long ConvertToHash(string key)
 		{
 			return key.GetHashCode();
 		}
 
-		private long ConvertToHash(string read)
+		private long ConvertToHash1(string read)
 		{
 			double hashedValue = 0;
 			var i = 0;
 			while (i < read.Length)
 			{
-				hashedValue += read.ElementAt(i) * Math.Pow(3, i);
+				hashedValue += (read.ElementAt(i) - 2) * Math.Pow(3, i);
 				i++;
 			}
 

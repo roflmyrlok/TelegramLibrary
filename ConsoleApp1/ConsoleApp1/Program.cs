@@ -12,7 +12,7 @@ namespace ConsoleApp1
 			var datafile = TxtRdr();
 			var lenTxt = 0;
 			foreach (var element in datafile) lenTxt++;
-			var maxNumberOfBoxes = Convert.ToInt32(Math.Pow(10, lenTxt.ToString().Length) * 1.7);
+			var maxNumberOfBoxes = Convert.ToInt32(Math.Pow(10, lenTxt.ToString().Length) * 10);
 			var buckets = new StringsDictionary();
 			buckets.StringsDictionaryStart(maxNumberOfBoxes);
 			foreach (var element in datafile)
@@ -33,6 +33,7 @@ namespace ConsoleApp1
 			{
 				var n = Console.ReadLine();
 				buckets.Get(n);
+				
 			}
 
 			List<string> TxtRdr()
