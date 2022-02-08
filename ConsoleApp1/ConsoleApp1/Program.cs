@@ -10,8 +10,7 @@ namespace ConsoleApp1
 		private static void Main(string[] args)
 		{
 			var datafile = new FileRdr().TxtRdr();
-			var buckets = new StringsDictionary();
-			buckets.StringsDictionaryStart(10);
+			var buckets = new StringsDictionary(10);
 			buckets.Fill(datafile,buckets);
 
 			while (true)

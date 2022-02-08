@@ -5,7 +5,7 @@ namespace ConsoleApp1
 {
 	public class Bucket
 	{
-		public LinkedListNode First;
+		public LinkedListNode<KeyValuePair> First;
 		public bool Visited;
 
 		public List<string> matched = new List<string>();
@@ -14,13 +14,13 @@ namespace ConsoleApp1
 		{
 			if (!Visited)
 			{
-				First = new LinkedListNode(pair);
+				First = new LinkedListNode<KeyValuePair>(pair);
 				Visited = true;
-				matched.Add(First.Pair.Key);
+				matched.Add(First.Value.Key);
 			}
 			else if (!matched.Contains(pair.Key))
 			{
-				First.Next = new LinkedListNode(pair);
+				First.Next = new LinkedListNode<KeyValuePair>(pair);
 			}
 			else
 			{
@@ -32,7 +32,7 @@ namespace ConsoleApp1
 		{
 			var current = First;
 			if (current == null) Console.WriteLine("no such an item in dict");
-			if (current.Pair.Key.Equals(key))
+			if (current.Value.Key.Equals(key))
 			{
 				First = current.Next;
 			}
@@ -41,7 +41,7 @@ namespace ConsoleApp1
 				while (true)
 				{
 					if (current.Next == null) Console.WriteLine("no such an item in dict");
-					if (current.Next.Pair.Key.Equals(key))
+					if (current.Next.Value.Key.Equals(key))
 					{
 						current.Next = current.Next.Next;
 					}
@@ -56,13 +56,13 @@ namespace ConsoleApp1
 			while (true)
 			{
 				if (current == null) return new KeyValuePair("T", "no such an item in dict");
-				if (!current.Pair.Key.Equals(key))
+				if (!current.Value.Key.Equals(key))
 					current = current.Next;
 				else
 					break;
 			}
 
-			return current.Pair;
+			return current.Value;
 		}
 	}
 }

@@ -11,11 +11,12 @@ namespace ConsoleApp1
 
 		private int _power;
 
-		public void StringsDictionaryStart(int power)
+		public StringsDictionary(int power)
 		{
 			_power = power;
 			_buckets = SetBuckets();
 		}
+		
 
 		public void Add(string element, string value)
 		{
@@ -72,7 +73,7 @@ namespace ConsoleApp1
 			foreach (var bucket in _buckets)
 				if (bucket.Visited)
 				{
-					var i = Convert.ToInt32(Math.Abs(ConvertToHash(bucket.First.Pair.Key) % _power));
+					var i = Convert.ToInt32(Math.Abs(ConvertToHash(bucket.First.Value.Key) % _power));
 					pureBuckets[i] = bucket;
 				}
 
