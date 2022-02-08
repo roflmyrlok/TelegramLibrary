@@ -29,6 +29,26 @@ namespace ConsoleApp1
 				_buckets = SetBuckets();
 			}
 		}
+		
+		public void Fill(List<string> datafile,StringsDictionary buckets)
+		{
+			
+			
+			//var maxNumberOfBoxes = Convert.ToInt32(Math.Pow(10, lenTxt.ToString().Length) * 10);
+			foreach (var element in datafile)
+			{
+				var i = 0;
+				var name = "";
+				while (!element[i].Equals(';'))
+				{
+					name += element[i];
+					i++;
+				}
+
+				var definition = element.Substring(i + 1);
+				buckets.Add(name, definition);
+			}
+		}
 
 		public void Remove(string element)
 		{
