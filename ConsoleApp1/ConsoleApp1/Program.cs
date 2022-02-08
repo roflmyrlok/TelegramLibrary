@@ -32,7 +32,7 @@ namespace ConsoleApp1
 			while (true)
 			{
 				var n = Console.ReadLine();
-				buckets.Get(n);
+				buckets.Get(n.ToUpper());
 				
 			}
 
