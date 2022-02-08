@@ -63,18 +63,5 @@ namespace ConsoleApp1
 		{
 			return key.GetHashCode();
 		}
-
-		private long ConvertToHash1(string read)
-		{
-			double hashedValue = 0;
-			var i = 0;
-			while (i < read.Length)
-			{
-				hashedValue += (read.ElementAt(i) - 2) * Math.Pow(3, i);
-				i++;
-			}
-
-			return Convert.ToInt64(hashedValue);
-		}
 	}
 }

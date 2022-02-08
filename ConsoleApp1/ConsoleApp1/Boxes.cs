@@ -8,7 +8,7 @@ namespace ConsoleApp1
 		public LinkedListNode First;
 		public bool Visited;
 
-		private List<string> matched = new List<string>();
+		public List<string> matched = new List<string>();
 
 		public void Add(KeyValuePair pair)
 		{
