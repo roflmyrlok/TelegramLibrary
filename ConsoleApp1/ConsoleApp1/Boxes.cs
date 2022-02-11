@@ -8,7 +8,7 @@ namespace ConsoleApp1
 		public LinkedListNode<KeyValuePair> First;
 		public bool Visited;
 
-		public List<string> matched = new List<string>();
+		//public List<T> matched = new List<T>();
 
 		public void Add(KeyValuePair pair)
 		{
@@ -16,16 +16,23 @@ namespace ConsoleApp1
 			{
 				First = new LinkedListNode<KeyValuePair>(pair);
 				Visited = true;
-				matched.Add(First.Value.Key);
-			}
-			else if (!matched.Contains(pair.Key))
-			{
-				First.Next = new LinkedListNode<KeyValuePair>(pair);
 			}
 			else
 			{
-				Console.WriteLine(pair.Value);
+				var current = First;
+				if (current == null) return;
+				while (current.Next != null)
+				{
+					if (current.Value.Equals(pair))
+					{
+						Console.WriteLine("colision");
+						return;
+					}
+					current = current.Next;
+				}
+				current.Next = new LinkedListNode<KeyValuePair>(pair);
 			}
+			
 		}
 
 		public void RemoveByKey(string key)
