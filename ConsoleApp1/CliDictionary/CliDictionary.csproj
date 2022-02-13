@@ -9,4 +9,8 @@
       <Compile Remove="TxtReader.cs" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DictionaryCore\DictionaryCore.csproj" />
+    </ItemGroup>
+
 </Project>

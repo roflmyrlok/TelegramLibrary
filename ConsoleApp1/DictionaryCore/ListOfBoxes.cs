@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace ConsoleApp1
+namespace DictionaryCore
 {
 	public class StringsDictionary
 	{
 		private List<Bucket> _buckets = new();
 		private double _fill;
-
+		private readonly double _maxfill = 0.6;
 		private int _power;
 
 		public StringsDictionary(int power)
@@ -23,8 +22,8 @@ namespace ConsoleApp1
 			var i = Convert.ToInt32(Math.Abs(ConvertToHash(element) % _power));
 			if (!_buckets[i].Visited)
 				_fill += 1 / Convert.ToDouble(_power);
-			_buckets[i].Add(new KeyValuePair(element, value));
-			if (_fill > 0.6)
+			_buckets[i].Add(new KeyValuePair<string,string>(element, value));
+			if (_fill > _maxfill)
 			{
 				_power = _power * 10;
 				_buckets = SetBuckets();
@@ -57,11 +56,11 @@ namespace ConsoleApp1
 			_buckets[i].RemoveByKey(element);
 		}
 
-		public void Get(string element)
+		public string Get(string element)
 		{
 			var i = Convert.ToInt32(Math.Abs(ConvertToHash(element) % _power));
 			var result = _buckets[i].GetItemWithKey(element).Value;
-			if (result != null) Console.WriteLine(result);
+			return result;
 		}
 
 		private List<Bucket> SetBuckets()

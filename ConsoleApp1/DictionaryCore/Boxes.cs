@@ -1,20 +1,19 @@
 using System;
-using System.Collections.Generic;
 
-namespace ConsoleApp1
+namespace DictionaryCore
 {
 	public class Bucket
 	{
-		public LinkedListNode<KeyValuePair> First;
+		public LinkedListNode<KeyValuePair<string,string>> First;
 		public bool Visited;
 
 		//public List<T> matched = new List<T>();
 
-		public void Add(KeyValuePair pair)
+		public void Add(KeyValuePair<string,string> pair)
 		{
 			if (!Visited)
 			{
-				First = new LinkedListNode<KeyValuePair>(pair);
+				First = new LinkedListNode<KeyValuePair<string,string>>(pair);
 				Visited = true;
 			}
 			else
@@ -30,7 +29,7 @@ namespace ConsoleApp1
 					}
 					current = current.Next;
 				}
-				current.Next = new LinkedListNode<KeyValuePair>(pair);
+				current.Next = new LinkedListNode<KeyValuePair<string,string>>(pair);
 			}
 			
 		}
@@ -57,12 +56,12 @@ namespace ConsoleApp1
 			
 		}
 
-		public KeyValuePair GetItemWithKey(string key)
+		public KeyValuePair<string,string> GetItemWithKey(string key)
 		{
 			var current = First;
 			while (true)
 			{
-				if (current == null) return new KeyValuePair("T", "no such an item in dict");
+				if (current == null) return new KeyValuePair<string,string>("T", "no such an item in dict");
 				if (!current.Value.Key.Equals(key))
 					current = current.Next;
 				else
