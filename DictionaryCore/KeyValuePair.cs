@@ -1,14 +1,8 @@
 namespace DictionaryCore;
 
-public class KeyValuePair<TKey, TValue>
+public class KeyValuePair<TKey, TValue>(TKey key, TValue value)
 {
-	public KeyValuePair(TKey key, TValue value)
-	{
-		Key = key;
-		Value = value;
-	}
+	public TKey Key { get; } = key;
 
-	public TKey Key { get; }
-
-	public TValue Value { get; }
+	public TValue Value { get; } = value;
 }

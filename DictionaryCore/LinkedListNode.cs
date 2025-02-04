@@ -1,14 +1,7 @@
 namespace DictionaryCore;
 
-public class LinkedListNode<T>
+public class LinkedListNode<T>(T value, LinkedListNode<T> next = null)
 {
-	public LinkedListNode(T value, LinkedListNode<T> next = null)
-	{
-		Value = value;
-		Next = next;
-	}
-
-	public T Value { get; }
-
-	public LinkedListNode<T> Next { get; set; }
+	public T Value { get; } = value;
+	public LinkedListNode<T> Next { get; set; } = next;
 }

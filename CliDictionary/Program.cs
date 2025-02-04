@@ -1,21 +1,13 @@
 ﻿using System;
 using DictionaryCore;
 
-namespace CliDictionary;
+var datafile = new FileReader().ReadLines();
+var dictionary = new StringsDictionary(10);
+dictionary.Fill(datafile,dictionary);
 
-internal abstract class Program
+while (true)
 {
-	private static void Main(string[] args)
-	{
-		var datafile = new FileReader().ReadLines();
-		var dictionary = new StringsDictionary(10);
-		dictionary.Fill(datafile,dictionary);
-
-		while (true)
-		{
-			var n = Console.ReadLine();
-			var def = dictionary.Get(n.ToUpper());
-			Console.WriteLine(def);
-		}
-	}
+	var n = Console.ReadLine();
+	var def = dictionary.Get(n.ToUpper());
+	Console.WriteLine(def);
 }

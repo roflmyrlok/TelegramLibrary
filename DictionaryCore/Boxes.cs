@@ -7,8 +7,6 @@ public class Bucket
 	public LinkedListNode<KeyValuePair<string,string>> First;
 	public bool Visited;
 
-	//public List<T> matched = new List<T>();
-
 	public void Add(KeyValuePair<string,string> pair)
 	{
 		if (!Visited)
@@ -24,7 +22,7 @@ public class Bucket
 			{
 				if (current.Value.Equals(pair))
 				{
-					Console.WriteLine("colision");
+					Console.WriteLine("collision");
 					return;
 				}
 				current = current.Next;

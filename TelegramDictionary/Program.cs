@@ -7,7 +7,7 @@ using Telegram.Bot.Types.Enums;
 
 namespace TelegramDictionary;
 
-class Program
+static class Program
 {
 	private static StringsDictionary _dictionary;
 	static async Task Main(string[] args)
