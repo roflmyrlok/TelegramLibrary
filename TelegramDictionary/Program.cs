@@ -21,7 +21,11 @@ static class Program
             _dictionary = new StringsDictionary(10);
             _dictionary.Fill(datafile, _dictionary);
             
-            var token = Environment.GetEnvironmentVariable("accessToken");
+            var solutionFolder = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", ".."); //.env in solution folder
+            Directory.SetCurrentDirectory(solutionFolder); 
+            dotenv.net.DotEnv.Load();
+            Console.WriteLine(solutionFolder);
+            var token = Environment.GetEnvironmentVariable("ACCESSTOKEN");
             if (string.IsNullOrEmpty(token))
             {
                 throw new Exception("Bot token not found in environment variables!");
