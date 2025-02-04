@@ -1,24 +1,21 @@
-using System;
-using System.Collections.Generic;
+namespace DictionaryCore;
 
-namespace DictionaryCore
+public class StringsDictionary
 {
-	public class StringsDictionary
-	{
-		private List<Bucket> _buckets = new();
-		private double _fill;
-		private readonly double _maxfill = 0.6;
-		private int _power;
+	private List<Bucket> _buckets = new();
+	private double _fill;
+	private readonly double _maxfill = 0.6;
+	private int _power;
 
-		public StringsDictionary(int power)
-		{
+	public StringsDictionary(int power)
+	{
 			_power = power;
 			_buckets = SetBuckets();
 		}
 		
 
-		public void Add(string element, string value)
-		{
+	public void Add(string element, string value)
+	{
 			var i = Convert.ToInt32(Math.Abs(ConvertToHash(element) % _power));
 			if (!_buckets[i].Visited)
 				_fill += 1 / Convert.ToDouble(_power);
@@ -30,8 +27,8 @@ namespace DictionaryCore
 			}
 		}
 		
-		public void Fill(List<string> datafile,StringsDictionary buckets)
-		{
+	public void Fill(List<string> datafile,StringsDictionary buckets)
+	{
 			
 			
 			//var maxNumberOfBoxes = Convert.ToInt32(Math.Pow(10, lenTxt.ToString().Length) * 10);
@@ -50,21 +47,21 @@ namespace DictionaryCore
 			}
 		}
 
-		public void Remove(string element)
-		{
+	public void Remove(string element)
+	{
 			var i = Convert.ToInt32(Math.Abs(ConvertToHash(element) % _power));
 			_buckets[i].RemoveByKey(element);
 		}
 
-		public string Get(string element)
-		{
+	public string Get(string element)
+	{
 			var i = Convert.ToInt32(Math.Abs(ConvertToHash(element) % _power));
 			var result = _buckets[i].GetItemWithKey(element).Value;
 			return result;
 		}
 
-		private List<Bucket> SetBuckets()
-		{
+	private List<Bucket> SetBuckets()
+	{
 			var pureBuckets = new List<Bucket>();
 			for (var i = 0; i < _power; i++) pureBuckets.Add(new Bucket());
 
@@ -79,9 +76,8 @@ namespace DictionaryCore
 			return pureBuckets;
 		}
 
-		private long ConvertToHash(string key)
-		{
+	private long ConvertToHash(string key)
+	{
 			return key.GetHashCode();
 		}
-	}
 }

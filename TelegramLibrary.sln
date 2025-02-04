@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryCore", "DictionaryCore\DictionaryCore.csproj", "{75B2B7D3-8F7D-4C94-BFED-B592A166D2E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliDictionary", "CliDictionary\CliDictionary.csproj", "{DFB1079D-9C4D-4E20-AC5E-B7829D8E81A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramDictionary", "TelegramDictionary\TelegramDictionary.csproj", "{70D5B961-2712-49C8-ABA9-201D100AB3A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75B2B7D3-8F7D-4C94-BFED-B592A166D2E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75B2B7D3-8F7D-4C94-BFED-B592A166D2E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75B2B7D3-8F7D-4C94-BFED-B592A166D2E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75B2B7D3-8F7D-4C94-BFED-B592A166D2E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFB1079D-9C4D-4E20-AC5E-B7829D8E81A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFB1079D-9C4D-4E20-AC5E-B7829D8E81A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFB1079D-9C4D-4E20-AC5E-B7829D8E81A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFB1079D-9C4D-4E20-AC5E-B7829D8E81A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70D5B961-2712-49C8-ABA9-201D100AB3A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70D5B961-2712-49C8-ABA9-201D100AB3A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70D5B961-2712-49C8-ABA9-201D100AB3A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70D5B961-2712-49C8-ABA9-201D100AB3A4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
