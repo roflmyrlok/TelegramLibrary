@@ -20,6 +20,7 @@ namespace TelegramDictionary
 			_dictionary = new StringsDictionary(10);
 			_dictionary.Fill(datafile,_dictionary);
 			var token = Environment.GetEnvironmentVariable("accessToken");
+			Console.WriteLine(token);
 			var botClient = new TelegramBotClient(token);
 			var me = await botClient.GetMeAsync();
 			Console.WriteLine($"Hello, World! I am user {me.Id} and my name is {me.FirstName}.");
